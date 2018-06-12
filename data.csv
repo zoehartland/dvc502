@@ -1,0 +1,73 @@
+code,industry,sector,size,rate,days
+ag,agriculture forestry and fishing,private,<25,1.7,2
+ag,agriculture forestry and fishing,private,25-49,0,3
+ag,agriculture forestry and fishing,private,50-499,0.8,4
+ag,agriculture forestry and fishing,private,500+,1.2,5
+ag,agriculture forestry and fishing,public,<25,1.7,6
+ag,agriculture forestry and fishing,public,25-49,0,7
+ag,agriculture forestry and fishing,public,50-499,0.8,8
+ag,agriculture forestry and fishing,public,500+,5.7,9
+en,energy and water,private,<25,1.4,10
+en,energy and water,private,25-49,2,11
+en,energy and water,private,50-499,1.5,12
+en,energy and water,private,500+,2.6,13
+en,energy and water,public,<25,1.4,14
+en,energy and water,public,25-49,1.5,15
+en,energy and water,public,50-499,2.3,16
+en,energy and water,public,500+,2.4,17
+ma,manufacturing,private,<25,1.5,18
+ma,manufacturing,private,25-49,1.4,19
+ma,manufacturing,private,50-499,0,20
+ma,manufacturing,private,500+,2.3,21
+ma,manufacturing,public,<25,1.1,22
+ma,manufacturing,public,25-49,5.5,23
+ma,manufacturing,public,50-499,2,24
+ma,manufacturing,public,500+,3.4,25
+co,construction,private,<25,1.7,26
+co,construction,private,25-49,2.1,27
+co,construction,private,50-499,2.2,28
+co,construction,private,500+,0.3,29
+co,construction,public,<25,1.8,30
+co,construction,public,25-49,3.3,31
+co,construction,public,50-499,1.2,32
+co,construction,public,500+,3.4,33
+di,distribution hotels and restaurants,private,<25,2.1,34
+di,distribution hotels and restaurants,private,25-49,2.7,35
+di,distribution hotels and restaurants,private,50-499,1,36
+di,distribution hotels and restaurants,private,500+,0.8,37
+di,distribution hotels and restaurants,public,<25,0,38
+di,distribution hotels and restaurants,public,25-49,-,39
+di,distribution hotels and restaurants,public,50-499,2.3,40
+di,distribution hotels and restaurants,public,500+,4.4,41
+tr,transport and communication,private,<25,1.7,42
+tr,transport and communication,private,25-49,0.8,43
+tr,transport and communication,private,50-499,1.1,44
+tr,transport and communication,private,500+,2,45
+tr,transport and communication,public,<25,1.8,46
+tr,transport and communication,public,25-49,0,47
+tr,transport and communication,public,50-499,2.6,48
+tr,transport and communication,public,500+,1.6,49
+ba,banking and finance,private,<25,2,50
+ba,banking and finance,private,25-49,2,51
+ba,banking and finance,private,50-499,1.4,52
+ba,banking and finance,private,500+,2.8,53
+ba,banking and finance,public,<25,1.3,54
+ba,banking and finance,public,25-49,2.6,55
+ba,banking and finance,public,50-499,0,56
+ba,banking and finance,public,500+,-,57
+pu,public admin education and health,private,<25,3.6,58
+pu,public admin education and health,private,25-49,0,59
+pu,public admin education and health,private,50-499,2.1,60
+pu,public admin education and health,private,500+,-,61
+pu,public admin education and health,public,<25,1.9,62
+pu,public admin education and health,public,25-49,2.7,63
+pu,public admin education and health,public,50-499,1.5,64
+pu,public admin education and health,public,500+,0.6,65
+ot,other services,private,<25,2.7,66
+ot,other services,private,25-49,0.3,67
+ot,other services,private,50-499,1.2,68
+ot,other services,private,500+,2.6,69
+ot,other services,public,<25,3.2,70
+ot,other services,public,25-49,2.3,71
+ot,other services,public,50-499,1.6,72
+ot,other services,public,500+,0.3,73
