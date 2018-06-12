@@ -144,55 +144,57 @@
 
 <body>
 	<div class="wrapper">
-		<div class="row">
-			<div class="title">Find out how sickness rates compare...</div>
-			<div class="titles">
-				<div class="subtitle">Tell us about where you work</div>
-				<div class="subtitle2">Choose from the dropdowns below</div>
-			</div>
-		</div>
-		<div class="row questions">
-			<p>I work in the</p>
-			<div id ="industry_dropdown" class="custom-select" style="width:385px;">
-			  <select>
-				 <option disabled selected value > select </option>
-				<option value="0">agriculture, forestry and fishing</option>
-				<option value="1">energy and water</option>
-				<option value="2">manufacturing</option>
-				<option value="3">construction</option>
-				<option value="4">distribution, hotels and restaurants</option>
-				<option value="5">transport and communication</option>
-				<option value="6">banking and finance</option>
-				<option value="7">public admin, education and health</option>
-				<option value="8">other services</option>
-			  </select>
-			</div>
-			<p>industry in the</p>
-			<div id ="pubpri_dropdown" class="custom-select" style="width:180px;">
-			  <select>
-				 <option disabled selected value > select </option>
-				<option value="0">public</option>
-				<option value="1">private</option>
-			  </select>
-			</div>
-			<p>sector with</p>
-			<div id ="size_dropdown" class="custom-select" style="width:200px;">
-			  <select>
-				 <option disabled selected value > select </option>
-				<option value="0">less than 25</option>
-				<option value="1">25 to 49</option>
-				<option value="2">50 to 499</option>
-				<option value="3">500 or more</option>
-			  </select>
-			</div>
-			<p>people.</p>
-		</div>
-		<div class="row">
-			<button id="submit" class="btn btn--primary-alternative btn--bold btn--large">
-				Submit
-			</button>
-		</div>
-
+    <div id="selections">
+      <div class="row">
+  			<div class="title">Find out how sickness rates compare...</div>
+  			<div class="titles">
+  				<div class="subtitle">Tell us about where you work</div>
+  				<div class="subtitle2">Choose from the dropdowns below</div>
+  			</div>
+  		</div>
+  		<div class="row questions">
+  			<p>I work in the</p>
+  			<div id ="industry_dropdown" class="custom-select" style="width:385px;">
+  			  <select>
+  				 <option disabled selected value > select </option>
+  				<option value="0">agriculture, forestry and fishing</option>
+  				<option value="1">energy and water</option>
+  				<option value="2">manufacturing</option>
+  				<option value="3">construction</option>
+  				<option value="4">distribution, hotels and restaurants</option>
+  				<option value="5">transport and communication</option>
+  				<option value="6">banking and finance</option>
+  				<option value="7">public admin, education and health</option>
+  				<option value="8">other services</option>
+  			  </select>
+  			</div>
+  			<p>industry in the</p>
+  			<div id ="pubpri_dropdown" class="custom-select" style="width:180px;">
+  			  <select>
+  				 <option disabled selected value > select </option>
+  				<option value="0">public</option>
+  				<option value="1">private</option>
+  			  </select>
+  			</div>
+  			<p>sector with</p>
+  			<div id ="size_dropdown" class="custom-select" style="width:200px;">
+  			  <select>
+  				 <option disabled selected value > select </option>
+  				<option value="0">less than 25</option>
+  				<option value="1">25 to 49</option>
+  				<option value="2">50 to 499</option>
+  				<option value="3">500 or more</option>
+  			  </select>
+  			</div>
+  			<p>people.</p>
+  		</div>
+  		<div class="row">
+  			<button id="submit" class="btn btn--primary-alternative btn--bold btn--large">
+  				Submit
+  			</button>
+  		</div>
+  </div>
+  <div id="results" class="hide">
 		<div class="row header">
       <text class="subtitle2">Companies with your characteristics have...</text>
     </div>
@@ -228,6 +230,7 @@
         </div>
         <div class="col-sm-1"></div>
   		</div>
+    </div>
 	</div>
 
 
@@ -347,6 +350,9 @@ if (Modernizr)
 
 		event.preventDefault();
 		event.stopPropagation();
+
+    d3.select("#selections").classed("hide", true)
+    d3.select("#results").classed("hide", false)
 
 		industry=d3.select("#industry_dropdown").select(".select-selected").html().substr(0,2)
 		pub_pri=d3.select("#pubpri_dropdown").select(".select-selected").html()
