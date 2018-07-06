@@ -56,6 +56,43 @@
       margin-top: 5px;
 		}
 
+    .padding{
+      padding:10px;
+      box-sizing: border-box;
+    }
+
+    .rates{
+			font-weight: 700;
+      height:50px;
+      background: #206095;
+      color: white;
+      font-size: 18px;
+      padding: 10px;
+		}
+
+    .days{
+			font-weight: 700;
+      height:50px;
+      background: #008181;
+      color: white;
+      font-size: 18px;
+      padding: 10px;
+		}
+
+    /* On screens that are 797px wide or less*/
+    @media screen and (max-width: 797px) {
+        .rates, .days {
+            height:70px;
+        }
+    }
+
+    /* On screens that are 513px wide or less*/
+    @media screen and (max-width: 513px) {
+      .rates, .days {
+          height:90px;
+      }
+    }
+
 		.questions{
 			font-size: 30px;
 			font-weight: 700;
@@ -111,17 +148,29 @@
     .bars text{
       margin-left: 10px;
       line-height: 60px;
-      font-size: 25px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .rate_days{
+      font-size: 27px;
       font-weight: 700;
     }
 
-		.you{
-			background-color: #1f5f93;
-			color: white;
-		}
+    .bartext{
+      font-weight: 600;
+    }
+
+		#selection{
+      background-color: #206095;
+    }
+
+    #selection2{
+      background-color: #008181;
+    }
 
     .UK{
-      background-color: #0c8242;
+      background-color: #064561;
 			color: white;
     }
 
@@ -133,7 +182,7 @@
 
     .whiteback{
       background: white;
-      padding: 10px;
+      margin-top: 20px;
     }
 
     .x .tick line {
@@ -151,6 +200,15 @@
       background: white;
     }
 
+    .rowpadding{
+      margin-top: 10px;
+    }
+
+    .chart_title{
+      font-size: 17px;
+      font-weight: 700;
+    }
+
 	</style>
 
 </head>
@@ -161,9 +219,9 @@
 
 <body>
 	<div class="wrapper">
+    <div class="title">Find out how sickness rates compare...</div>
     <div id="selections">
       <div class="row">
-  			<div class="title">Find out how sickness rates compare...</div>
   			<div class="titles">
   				<div class="subtitle">Tell us about where you work</div>
   				<div class="subtitle2">Choose from the dropdowns below</div>
@@ -212,51 +270,82 @@
   		</div>
   </div>
   <div id="results" class="hide">
-		<div class="row header">
-      <text class="subtitle2">Companies with your characteristics have...</text>
-    </div>
-    <div class="row whiteback">
-        <div class="col-sm-12"><text class="subtitle">Sickness absence rates of</text></div>
-        <div class="col-sm-3 dropstyle">
-            <text>Where you work</text><text id="rateVal"></text>
+  		<!-- <div class="row header">
+        <text class="subtitle2"> ...</text>
+      </div> -->
+      <div class="row whiteback">
+          <div class="col-sm-6 padding">
+            <div class="row">
+              <div class="rates">
+                <text>People who work for similar employees, have sickness abscence rates of</text>
+              </div>
+            </div>
+            <div class="row rowpadding">
+              <div class="col-sm-4 dropstyle">
+                  <text id="rateVal" class="rate_days"></text>
+                  <text class="bartext">Where you work</text>
+              </div>
+              <div class="col-sm-8" >
+                  <div class="bars you" id="selection" style="width:0%; height:50px"></div>
+              </div>
+              <!-- <div class="col-sm-1"></div> -->
+            </div>
+            <div class="row">
+              <div class="col-sm-4 dropstyle">
+                  <text class="rate_days">1.9%</text>
+                  <text class="bartext">UK average</text>
+              </div>
+              <div class="col-sm-8">
+                  <div class="bars UK" id="uk_average2" style="width:31.67%; height:50px"></div>
+              </div>
+              <!-- <div class="col-sm-1"></div> -->
+            </div>
+
+          </div>
+
+          <div class="col-sm-6 padding">
+            <div class="row">
+              <div class="days">
+                <text>and an average number of days off per worker per year of</text>
+              </div>
+            </div>
+              <div class="row rowpadding">
+                <div class="col-sm-4 dropstyle">
+                    <text id="daysVal" class="rate_days"></text>
+                    <text class="bartext">Your work</text>
+                </div>
+                <div class="col-sm-8" >
+                    <div class="bars you" id="selection2" style="width:0%; height:50px"></div>
+                </div>
+                <!-- <div class="col-sm-1"></div> -->
+              </div>
+              <div class="row">
+                <div class="col-sm-4 dropstyle">
+                    <text class="rate_days">xx days</text>
+                    <text class="bartext">UK average</text>
+                </div>
+                <div class="col-sm-8">
+                    <div class="bars UK" id="uk_average2" style="width:31.67%; height:50px"></div>
+                </div>
+                <!-- <div class="col-sm-1"></div> -->
+              </div>
+    		  </div>
         </div>
-        <div class="col-sm-8" >
-            <div class="bars you" id="selection" style="width:0%; height:50px"></div>
-        </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-3 dropstyle">
-            <text>UK average</text><text>1.9%</text>
-        </div>
-        <div class="col-sm-8">
-            <div class="bars UK" id="uk_average2" style="width:31.67%; height:50px"></div>
-        </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-12"><text class="subtitle">an average number of days off per worker per year of</text></div>
-        <div class="col-sm-3 dropstyle">
-            <text>Where you work</text><text id="daysVal"></text>
-        </div>
-        <div class="col-sm-8" >
-            <div class="bars you" id="selection2" style="width:0%; height:50px"></div>
-        </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-3 dropstyle">
-            <text>UK average</text><text>xx days</text>
-        </div>
-        <div class="col-sm-8">
-            <div class="bars UK" id="uk_average2" style="width:31.67%; height:50px"></div>
-        </div>
-        <div class="col-sm-1"></div>
-  		</div>
-    </div>
-    <div class="row charts">
+</div>
+<div class="row charts">
       <p>Some text here to explain what these charts show</p>
-      <div class="col-sm-7" id="graphic"></div>
-      <div class="row">
-        <div class="col-sm-5" id="graphic2"></div>
-        <div class="col-sm-5" id="graphic3"></div>
-      </div>
-    </div>
-	</div>
+        <div class="col-sm-6" id="graphic">
+
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div id="graphic2"></div>
+            <div id="graphic3"></div>
+          </div>
+        </div>
+
+</div>
+
 
 
 <script>
@@ -273,12 +362,16 @@
 	var size;
 
 function drawGraphic() {
-    var margin = {top: 5, right: 15, bottom: 20, left: 220};
+    var margin = {top: 5, right: 15, bottom: 10, left: 220};
     var chart_width = parseInt(graphic.style("width")) - margin.left - margin.right;
-    var height = 25 * graphic_data.length - margin.top - margin.bottom;
+    var height = 28 * graphic_data.length - margin.top - margin.bottom;
 
     // clear out existing graphics
     graphic.selectAll("*").remove();
+
+    d3.select("#graphic").append("div").attr("class", "chart_title").append("text").append("tspan").text("Your industry is ")
+    d3.select("#graphic").select("div").select("text").append("tspan").text("xxxxx")
+    d3.select("#graphic").select("div").select("text").append("tspan").text(" out of all 9 industries")
 
     var x = d3.scaleLinear()
           .range([ 0, chart_width]);
@@ -349,7 +442,7 @@ function drawGraphic() {
         .data(bars["rate"])
         .enter()
         .append('rect')
-        .attr("fill", "#1A5E96")
+        .attr("fill", "#064561")
         .attr("id", function (d){
           return d.industry.substr(0,2).toLowerCase()+"_bar"
         })
@@ -370,12 +463,17 @@ function drawGraphic() {
 } //end drawGraphic
 
 function drawGraphic2() {
-    var margin2 = {top: 15, right: 15, bottom: 20, left: 100};
+    var margin2 = {top: 15, right: 15, bottom: 10, left: 100};
     var chart_width2 = parseInt(graphic2.style("width")) - margin2.left - margin2.right;
     var height2 = 39 * graphic_data2.length - margin2.top - margin2.bottom;
 
     // clear out existing graphics
     graphic2.selectAll("*").remove();
+    d3.select("#graphic2").append("div").attr("class", "chart_title").append("text").append("tspan").text("The ")
+    d3.select("#graphic2").select("div").select("text").append("tspan").text("xxxxx")
+    d3.select("#graphic2").select("div").select("text").append("tspan").text(" sector has the ")
+    d3.select("#graphic2").select("div").select("text").append("tspan").text("xxxxx")
+    d3.select("#graphic2").select("div").select("text").append("tspan").text("sickness rates")
 
     var x = d3.scaleLinear()
           .range([ 0, chart_width2]);
@@ -445,7 +543,7 @@ function drawGraphic2() {
         .data(bars2["rate"])
         .enter()
         .append('rect')
-        .attr("fill", "#1A5E96")
+        .attr("fill", "#064561")
         .attr("id", function (d){
           return d.pub_pri+"_bar"
         })
@@ -466,12 +564,15 @@ function drawGraphic2() {
 } //end drawGraphic2
 
 function drawGraphic3() {
-    var margin3 = {top: 5, right: 15, bottom: 20, left: 100};
+    var margin3 = {top: 5, right: 15, bottom: 10, left: 100};
     var chart_width3 = parseInt(graphic3.style("width")) - margin3.left - margin3.right;
     var height3 = 28 * graphic_data3.length - margin3.top - margin3.bottom;
 
     // clear out existing graphics
     graphic3.selectAll("*").remove();
+    d3.select("#graphic3").append("div").attr("class", "chart_title").append("text").append("tspan").text("Your size of organisation is ")
+    d3.select("#graphic3").select("div").select("text").append("tspan").text("Xrd")
+    d3.select("#graphic3").select("div").select("text").append("tspan").text(" out of 4")
 
     var x = d3.scaleLinear()
           .range([ 0, chart_width3]);
@@ -540,7 +641,7 @@ function drawGraphic3() {
         .data(bars3["rate"])
         .enter()
         .append('rect')
-        .attr("fill", "#1A5E96")
+        .attr("fill", "#064561")
         .attr("id", function (d){
           return "size_"+d.size.replace(" to ", "-").replace("less than ", "").replace(" or more", "")+"_bar"
         })
@@ -716,9 +817,9 @@ if (Modernizr)
         d3.select("#selections").classed("hide", true)
         d3.select("#results").classed("hide", false)
         d3.select(".charts").classed("hide", false)
-        d3.select("#"+industry+"_bar").style("fill", "red")
-        d3.select("#"+pub_pri+"_bar").style("fill", "red")
-        d3.select("#size_"+size.replace("<", "").replace("+", "")+"_bar").style("fill", "red")
+        d3.select("#"+industry+"_bar").style("fill", "#206095")
+        d3.select("#"+pub_pri+"_bar").style("fill", "#206095")
+        d3.select("#size_"+size.replace("<", "").replace("+", "")+"_bar").style("fill", "#206095")
 
         d3.select(".charts").style("opacity",1)
 
@@ -726,6 +827,12 @@ if (Modernizr)
         	d3.select("#rateVal").text(rate+"%")
 
          parentWidth = parseInt(d3.select("#selection2").select(function() { return this.parentNode; }).style("width"));
+
+         if(rate=="-"){
+           d3.select("#rateVal").text("N/A")
+           d3.select("#selection").append("text").text("Data supressed at this level")
+         }
+
             d3.select("#selection")
               .transition()
               .delay(100)
