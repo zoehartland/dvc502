@@ -681,10 +681,11 @@ function drawGraphic3() {
       first = false
       highlight_choices(first);
 
+d3.select(".charts").select(".reset_btn").remove();
 
       d3.select(".charts")
         .append("div")
-        .attr("class", "row")
+        .attr("class", "row reset_btn")
         .append("button")
         .attr("id", "reset")
         .attr("class", "btn btn--primary-alternative btn--bold btn--large")
