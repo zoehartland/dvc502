@@ -3,7 +3,7 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <title>Title goes here</title>
+    <title>Sickness absence calculator</title>
 
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -16,8 +16,9 @@
 		body {
 			max-width: 800px;
 			margin: 0px auto;
-			background:  #DDE7EF;
+			/*background:  #DDE7EF;*/
 			color: #1A5E96!important;
+      padding-bottom: 170px;
 		}
 
 		p{
@@ -40,6 +41,10 @@
 			font-size: 40px;
 			font-weight: 700;
 			line-height: 1.1em;
+      padding: 10px 10px 0px 0px;
+      border-top: 5px;
+      border-style: solid;
+      border-color: #1A5E96;
 		}
 
 		.subtitle, .subtitle2{
@@ -110,8 +115,8 @@
 		}
 
 		.custom-select{
-			border: none;
-			top: -5px;
+			/*border: none;*/
+      top: -5px;
 		}
 
 		#submit{
@@ -181,7 +186,7 @@
     }
 
     .whiteback{
-      background: white;
+    /*  background: white;*/
       margin-top: 20px;
     }
 
@@ -197,7 +202,8 @@
         stroke: none;
     }
     .charts{
-      background: white;
+    /*  background: white;*/
+    margin-top: 20px;
     }
 
     .rowpadding{
@@ -207,6 +213,24 @@
     .chart_title{
       font-size: 17px;
       font-weight: 700;
+      padding: 0px 10px;
+    }
+
+    .lightblue{
+      color:#206095;
+    }
+
+    .darkblue{
+      color:#064561;
+    }
+
+    .teal{
+      color:#008181;
+    }
+
+    .blurb{
+      margin:10px 0px;
+      padding: 0px 10px;
     }
 
 	</style>
@@ -281,9 +305,9 @@
               </div>
             </div>
             <div class="row rowpadding">
-              <div class="col-sm-4 dropstyle">
+              <div class="col-sm-4 dropstyle lightblue">
                   <text id="rateVal" class="rate_days"></text>
-                  <text class="bartext">Where you work</text>
+                  <text class="bartext">Your work</text>
               </div>
               <div class="col-sm-8" >
                   <div class="bars you" id="selection" style="width:0%; height:50px"></div>
@@ -291,7 +315,7 @@
               <!-- <div class="col-sm-1"></div> -->
             </div>
             <div class="row">
-              <div class="col-sm-4 dropstyle">
+              <div class="col-sm-4 dropstyle darkblue">
                   <text class="rate_days">1.9%</text>
                   <text class="bartext">UK average</text>
               </div>
@@ -310,7 +334,7 @@
               </div>
             </div>
               <div class="row rowpadding">
-                <div class="col-sm-4 dropstyle">
+                <div class="col-sm-4 dropstyle teal">
                     <text id="daysVal" class="rate_days"></text>
                     <text class="bartext">Your work</text>
                 </div>
@@ -320,7 +344,7 @@
                 <!-- <div class="col-sm-1"></div> -->
               </div>
               <div class="row">
-                <div class="col-sm-4 dropstyle">
+                <div class="col-sm-4 dropstyle darkblue">
                     <text class="rate_days">xx days</text>
                     <text class="bartext">UK average</text>
                 </div>
@@ -332,8 +356,10 @@
     		  </div>
         </div>
 </div>
+<div class="row blurb">
+  <!-- <p>Some text here to explain what these charts show</p> -->
+</div>
 <div class="row charts">
-      <p>Some text here to explain what these charts show</p>
         <div class="col-sm-6" id="graphic">
 
         </div>
@@ -343,7 +369,6 @@
             <div id="graphic3"></div>
           </div>
         </div>
-
 </div>
 
 
@@ -360,23 +385,21 @@
 	var industry;
 	var pub_pri;
 	var size;
+  var completed = false;
 
 function drawGraphic() {
-    var margin = {top: 5, right: 15, bottom: 10, left: 220};
+    var margin = {top: 15, right: 15, bottom: 10, left: 220};
     var chart_width = parseInt(graphic.style("width")) - margin.left - margin.right;
     var height = 28 * graphic_data.length - margin.top - margin.bottom;
 
     // clear out existing graphics
     graphic.selectAll("*").remove();
 
-    d3.select("#graphic").append("div").attr("class", "chart_title").append("text").append("tspan").text("Your industry is ")
-    d3.select("#graphic").select("div").select("text").append("tspan").text("xxxxx")
-    d3.select("#graphic").select("div").select("text").append("tspan").text(" out of all 9 industries")
+    d3.select("#graphic").append("div")
+      .attr("class", "chart_title")
 
     var x = d3.scaleLinear()
           .range([ 0, chart_width]);
-
-
 
     var y = d3.scaleBand()
       .rangeRound([0, height])
@@ -454,26 +477,24 @@ function drawGraphic() {
     d3.selectAll("text").attr("font-family","'Open Sans', sans-serif");
 
 
-    //use pym to calculate chart dimensions
-    if (pymChild) {
-        pymChild.sendHeight();
-    }
+    // //use pym to calculate chart dimensions
+    // if (pymChild) {
+    //     pymChild.sendHeight();
+    // }
 
     drawGraphic2();
 } //end drawGraphic
 
 function drawGraphic2() {
-    var margin2 = {top: 15, right: 15, bottom: 10, left: 100};
+    var margin2 = {top: 5, right: 15, bottom: 0, left: 100};
     var chart_width2 = parseInt(graphic2.style("width")) - margin2.left - margin2.right;
-    var height2 = 39 * graphic_data2.length - margin2.top - margin2.bottom;
+    var height2 = 28 * graphic_data2.length - margin2.top - margin2.bottom;
 
     // clear out existing graphics
     graphic2.selectAll("*").remove();
-    d3.select("#graphic2").append("div").attr("class", "chart_title").append("text").append("tspan").text("The ")
-    d3.select("#graphic2").select("div").select("text").append("tspan").text("xxxxx")
-    d3.select("#graphic2").select("div").select("text").append("tspan").text(" sector has the ")
-    d3.select("#graphic2").select("div").select("text").append("tspan").text("xxxxx")
-    d3.select("#graphic2").select("div").select("text").append("tspan").text("sickness rates")
+
+    d3.select("#graphic2").append("div")
+      .attr("class", "chart_title")
 
     var x = d3.scaleLinear()
           .range([ 0, chart_width2]);
@@ -556,10 +577,10 @@ function drawGraphic2() {
 
 
 
-    //use pym to calculate chart dimensions
-    if (pymChild) {
-        pymChild.sendHeight();
-    }
+    // //use pym to calculate chart dimensions
+    // if (pymChild) {
+    //     pymChild.sendHeight();
+    // }
     drawGraphic3();
 } //end drawGraphic2
 
@@ -570,9 +591,9 @@ function drawGraphic3() {
 
     // clear out existing graphics
     graphic3.selectAll("*").remove();
-    d3.select("#graphic3").append("div").attr("class", "chart_title").append("text").append("tspan").text("Your size of organisation is ")
-    d3.select("#graphic3").select("div").select("text").append("tspan").text("Xrd")
-    d3.select("#graphic3").select("div").select("text").append("tspan").text(" out of 4")
+
+    d3.select("#graphic3").append("div")
+      .attr("class", "chart_title")
 
     var x = d3.scaleLinear()
           .range([ 0, chart_width3]);
@@ -654,13 +675,172 @@ function drawGraphic3() {
 
     d3.selectAll(".y text").attr("font-size","12px").attr("fill","#1A5E96");
     d3.selectAll(".x text").attr("font-size","12px").attr("fill","#1A5E96"); // dates - timelines
-    d3.select(".charts").style("opacity",0)
+    //  d3.select(".charts").style("opacity",0)
+
+    if(completed == true){
+      first = false
+      highlight_choices(first);
+
+
+      d3.select(".charts")
+        .append("div")
+        .attr("class", "row")
+        .append("button")
+        .attr("id", "reset")
+        .attr("class", "btn btn--primary-alternative btn--bold btn--large")
+        .on("click", function(){  location.reload(); })
+        .text("Reset")
+    }
+
 
     //use pym to calculate chart dimensions
     if (pymChild) {
         pymChild.sendHeight();
     }
 } //end drawGraphic3
+
+function highlight_choices(){
+console.log(first)
+  d3.select("body").style("padding-bottom", "10px")
+
+
+  d3.select("#graphic").select(".chart_title").selectAll("*").remove();
+  d3.select("#graphic2").select(".chart_title").selectAll("*").remove();
+  d3.select("#graphic3").select(".chart_title").selectAll("*").remove();
+
+              if(industry == "ag"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Agriculture, forestry and fishing has the lowest sickness rates out of all industies")
+              } else if (industry == "ba"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Banking and finance has the 2nd lowest sickness rates out of all industies")
+              } else if (industry == "ot"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Other services have the 3rd lowest sickness rates out of all industies")
+              } else if (industry == "co"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("The construction industry is ranked 6 out of 9 for sickness absence rates")
+              } else if (industry == "di"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("The distribution industry is ranked 5 out of 9 for sickness absence rates")
+              } else if (industry == "tr"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("The transport and communication industry is ranked 4 out of 9 for sickness absence rates")
+              } else if (industry == "en"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Energy and water has the 3rd highest sickness rates out of all industries")
+              } else if (industry == "ma"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("manufacturing has the 2nd highest sickness rates out of all industries")
+              } else if (industry == "pu"){
+                d3.select("#graphic").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Public admin, education and health has the highest sickness rates out of all industries")
+              }
+
+              if(pub_pri == "public"){
+                d3.select("#graphic2").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("The public sector has the highest sickness rates")
+              } else if (pub_pri == "private"){
+                d3.select("#graphic2").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("The private sector has the lowest sickness rates")
+              }
+
+              if(size == "<25"){
+                d3.select("#graphic3").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Your size of organinsation has the lowest sickness absence")
+              } else if(size == "25-49"){
+                d3.select("#graphic3").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Your size of organinsation has the 2nd lowest sickness absence")
+              } else if(size == "50-499"){
+                d3.select("#graphic3").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Your size of organinsation has the 2nd highset sickness absence")
+              } else if(size == "500+"){
+                d3.select("#graphic3").select(".chart_title")
+                  .append("text")
+                  .append("tspan")
+                  .text("Your size of organinsation has the highest sickness absence")
+              }
+
+
+
+          d3.select("#selections").classed("hide", true)
+          d3.select("#results").classed("hide", false)
+          d3.select(".charts").classed("hide", false)
+          d3.select("#"+industry+"_bar").style("fill", "#206095")
+          d3.select("#"+pub_pri+"_bar").style("fill", "#206095")
+          d3.select("#size_"+size.replace("<", "").replace("+", "")+"_bar").style("fill", "#206095")
+
+          d3.select(".charts").style("opacity",1)
+
+          rate = nest[industry][pub_pri][size][0].rate
+          	d3.select("#rateVal").text(rate+"%")
+
+           parentWidth = parseInt(d3.select("#selection2").select(function() { return this.parentNode; }).style("width"));
+
+           if(rate=="-"){
+             d3.select("#rateVal").text("N/A")
+             d3.select("#selection").style("width", "100%").
+                style("background", "white")
+                .append("text")
+                .style("color", "#206095")
+                .style("line-height", "45px")
+                .text("Data supressed at this level")
+           }
+
+if (first == true){
+              d3.select("#selection")
+                .transition()
+                .delay(100)
+                .duration(1500)
+                .style("width", (rate/6)*parentWidth+"px")
+
+              days = nest[industry][pub_pri][size][0].days
+              d3.select("#daysVal").text(days+" days")
+              d3.select("#selection2")
+                .transition()
+                .delay(100)
+                .duration(1500)
+                .style("width", (days/73)*parentWidth+"px")
+
+  } else {
+    d3.select("#selection")
+      .style("width", (rate/6)*parentWidth+"px")
+
+    days = nest[industry][pub_pri][size][0].days
+    d3.select("#daysVal").text(days+" days")
+    d3.select("#selection2")
+      .style("width", (days/73)*parentWidth+"px")
+
+  }
+} //end highlight_choices
 
 	//check to see if the web browser can handle 'inline svg'
 if (Modernizr)
@@ -680,8 +860,6 @@ if (Modernizr)
 
         sizes = d3.keys(graphic_data3[0]).filter(function(key) { return key !== "state"; });
 
-          //use pym to create iframed chart dependent on specified variables
-          pymChild = new pym.Child({ renderCallback: drawGraphic});
         });
       });
     });
@@ -790,6 +968,8 @@ if (Modernizr)
   d3.select("#industry_dropdown").select(".select-selected").on("change", function(){ console.log("change")})
 
 	d3.select('#submit').on("click",function(){
+    completed = true;
+    //use pym to create iframed chart dependent on specified variables
 
 		event.preventDefault();
 		event.stopPropagation();
@@ -798,6 +978,7 @@ if (Modernizr)
     industry=d3.select("#industry_dropdown").select(".select-selected").html().substr(0,2)
 		pub_pri=d3.select("#pubpri_dropdown").select(".select-selected").html()
 		size=d3.select("#size_dropdown").select(".select-selected").html().replace(" to ", "-").replace("less than ", "<").replace(" or more", "+")
+
 
     if(industry == " s" || pub_pri == " select " || size == " select "){
         console.log("not all completed")
@@ -813,41 +994,20 @@ if (Modernizr)
             d3.select("#size_dropdown").select(".select-selected").classed("select-selected-error", true)
           }
      } else {
-        console.log("completed")
-        d3.select("#selections").classed("hide", true)
-        d3.select("#results").classed("hide", false)
-        d3.select(".charts").classed("hide", false)
-        d3.select("#"+industry+"_bar").style("fill", "#206095")
-        d3.select("#"+pub_pri+"_bar").style("fill", "#206095")
-        d3.select("#size_"+size.replace("<", "").replace("+", "")+"_bar").style("fill", "#206095")
 
-        d3.select(".charts").style("opacity",1)
+       pymChild = new pym.Child({ renderCallback: drawGraphic});
 
-        rate = nest[industry][pub_pri][size][0].rate
-        	d3.select("#rateVal").text(rate+"%")
 
-         parentWidth = parseInt(d3.select("#selection2").select(function() { return this.parentNode; }).style("width"));
-
-         if(rate=="-"){
-           d3.select("#rateVal").text("N/A")
-           d3.select("#selection").append("text").text("Data supressed at this level")
-         }
-
-            d3.select("#selection")
-              .transition()
-              .delay(100)
-              .duration(1500)
-              .style("width", (rate/6)*parentWidth+"px")
-
-            days = nest[industry][pub_pri][size][0].days
-            d3.select("#daysVal").text(days+" days")
-            d3.select("#selection2")
-              .transition()
-              .delay(100)
-              .duration(1500)
-              .style("width", (days/73)*parentWidth+"px")
+        first = true;
+        highlight_choices(first)
 
       }
+
+      //use pym to calculate chart dimensions
+      if (pymChild) {
+          pymChild.sendHeight();
+      }
+
 	})
 
 
